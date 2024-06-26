@@ -37,7 +37,9 @@ test:
     - pytest
   commands:
     #- pip check
-    - pytest -v tests -k "not test_example_app.py"
+    # test_example_app.py is picked by win-64 and gets an AppTest
+    # timeout
+    - pytest -v tests/test_sis_extras.py
 
 about:
   home: https://github.com/blackary/sis-extras
@@ -55,3 +57,5 @@ about:
 extra:
   recipe-maintainers:
     - ifitchet
+  skip-lints:
+    - missing_pip_check
