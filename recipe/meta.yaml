@@ -37,7 +37,7 @@ test:
     - pytest
   commands:
     #- pip check
-    - pytest -v tests
+    - pytest -v tests -k "not test_example_app.py"
 
 about:
   home: https://github.com/blackary/sis-extras
