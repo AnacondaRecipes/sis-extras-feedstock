@@ -8,11 +8,14 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/sis_extras-{{ version }}.tar.gz
   sha256: e7e1892ab5eef36e38880dc9b636597dce83162df4d51f3f7f509a7e792e8a73
+  patches:
+    - patches/0001-loosen-Python-and-streamlit-constraints.patch
 
 build:
-  skip: True  # [py>38]
+  # Strictly, upstream is py==38 and we don't have
+  # snowflake-snowpark-python for 3.12
   # no streamlit on s390x
-  skip: True  # [s390x]
+  skip: True  # [py>311 or s390x]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -23,7 +26,8 @@ requirements:
     - pip
   run:
     - python
-    - streamlit # ==1.31.1
+    # Strictly, upstream is streamlit==1.31.1
+    - streamlit
     - snowflake-snowpark-python >=1.13.0
     - plotly >=5.20.0
 
@@ -35,11 +39,12 @@ test:
   requires:
     - pip
     - pytest
+    # sqlparse can be used if available
+    - sqlparse
   commands:
-    #- pip check
-    # test_example_app.py is picked by win-64 and gets an AppTest
-    # timeout
+    - pip check
     - pytest -v tests/test_sis_extras.py
+    - python -m tests.test_example_app
 
 about:
   home: https://github.com/blackary/sis-extras
