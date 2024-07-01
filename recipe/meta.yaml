@@ -10,6 +10,7 @@ source:
   sha256: e7e1892ab5eef36e38880dc9b636597dce83162df4d51f3f7f509a7e792e8a73
   patches:
     - patches/0001-loosen-Python-and-streamlit-constraints.patch
+    - patches/0002-add-a-timeout-to-the-test-run.patch
 
 build:
   # Strictly, upstream is py==38 and we don't have
@@ -20,6 +21,9 @@ build:
   number: 0
 
 requirements:
+  build:
+    - patch     # [not win]
+    - m2-patch  # [win]
   host:
     - python
     - pdm-backend
