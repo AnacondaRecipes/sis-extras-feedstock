@@ -66,5 +66,3 @@ about:
 extra:
   recipe-maintainers:
     - ifitchet
-  skip-lints:
-    - missing_pip_check
