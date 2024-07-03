@@ -58,7 +58,7 @@ about:
     to help you develop beautiful, performant streamlit-in-snowflake
     apps.
   license: MIT
-  license_url: https://spdx.org/licenses/MIT.html
+  license_file: LICENSE.txt
   license_family: MIT
   doc_url: https://github.com/blackary/sis-extras
   dev_url: https://github.com/blackary/sis-extras
