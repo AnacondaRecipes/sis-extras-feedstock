@@ -8,12 +8,12 @@ package:
 source:
   - url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/sis_extras-{{ version }}.tar.gz
     sha256: e7e1892ab5eef36e38880dc9b636597dce83162df4d51f3f7f509a7e792e8a73
+    patches:
+      - patches/0001-loosen-Python-and-streamlit-constraints.patch
+      - patches/0002-add-a-timeout-to-the-test-run.patch
   # We requested this license file be added for future releases
   - url: https://raw.githubusercontent.com/blackary/sis-extras/01190913ea267bf341233d208274a3e93e0d2260/LICENSE.txt
     sha256: a473df6c7b1f1b6a77ac47c18c658aee8bb1b95c018cd56dee688496c3c85728
-  - patches:
-      - patches/0001-loosen-Python-and-streamlit-constraints.patch
-      - patches/0002-add-a-timeout-to-the-test-run.patch
 
 build:
   # Strictly, upstream is py==38 and we don't have
